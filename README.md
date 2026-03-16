@@ -25,7 +25,7 @@ docker-compose up --build
 ```
 This spins up both the Strapi CMS and the automation in isolated containers. The compose file uses a **healthcheck** on the CMS service so the automation only starts after Strapi is fully ready to accept requests (no manual steps needed)
 
-Once it finishes, you can verify the products were created by opening [http://localhost:1337/admin](http://localhost:1337/admin) and logging in with the credentials from `docker-compose.yaml` (default: `admin@gmail.com` / `@Admin123`). Navigate to **Content Manager → Product** to confirm the records are there.
+Once it finishes, you can verify the products were created by opening [http://localhost:1337/admin](http://localhost:1337/admin) and logging in with the credentials from `docker-compose.yaml` (default: `admin@gmail.com` / `@Admin123`). Navigate to **Content Manager > Product** to confirm the records are there.
 
 #### Local
 
@@ -73,6 +73,10 @@ All dependency wiring lives in [`src/index.ts`](src/index.ts). Adapters are inst
 #### Login resilience
 
 The Playwright base adapter ([`src/adapters/playwright-strapi/base.adapter.ts`](src/adapters/playwright-strapi/base.adapter.ts)) includes a retry mechanism for the Strapi login flow. It handles rate-limit responses and invalid credentials gracefully, retrying up to 3 times with a configurable delay.
+
+#### Page Object-like pattern
+
+The Playwright adapters follow an approach similar to the [Page Object pattern](https://playwright.dev/docs/pom). The base adapter ([`src/adapters/playwright-strapi/base.adapter.ts`](src/adapters/playwright-strapi/base.adapter.ts)) encapsulates all shared browser interactions (login, navigation, guided tour dismissal) while the product adapter ([`src/adapters/playwright-strapi/product.adapter.ts`](src/adapters/playwright-strapi/product.adapter.ts)) extends it with form-specific logic for creating products. This keeps selectors and page interactions organized and easy to mantain if the Strapi UI changes.
 
 #### Structured logging
 
