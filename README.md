@@ -47,7 +47,7 @@ npm run build && npm start
 
 The project follows hexagonal architecture (aka ports and adapters) to keep the domain logic completely decoupled from external systems. This means swapping the CSV source for an API or replacing Playwright with direct Strapi API calls requires zero changes to the core business logic.
 
-<!-- ![Hexagonal Architecture Diagram]() -->
+<img width="801" height="401" alt="image" src="https://github.com/user-attachments/assets/5df64b8f-e30d-4650-a27a-9e8a6153641c" />
 
 **Inbound port**: defines what the application can do:
 - [`src/ports/in/product.port.ts`](src/ports/in/product.port.ts): `IProductPort` with `registerAllFoundProducts()` and `findAll()`
@@ -61,8 +61,6 @@ The project follows hexagonal architecture (aka ports and adapters) to keep the 
 - [`src/adapters/csv/product.adapter.ts`](src/adapters/csv/product.adapter.ts): reads and parses the CSV file
 - [`src/adapters/playwright-strapi/product.adapter.ts`](src/adapters/playwright-strapi/product.adapter.ts): drives the Strapi admin UI via Playwright
 - [`src/adapters/environment/secret.adapter.ts`](src/adapters/environment/secret.adapter.ts): reads secrets from environment variables
-
-<!-- ![Adapters flow diagram]() -->
 
 #### Domain-centric validation with Zod
 
