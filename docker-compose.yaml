@@ -1,0 +1,39 @@
+services:
+  cms:
+    container_name: cms_app
+    build: ./sample-product-register-cms
+    ports:
+      - 1337:1337
+    environment:
+      ## those are sample values that in production wouldn't be available this way
+      HOST: 0.0.0.0
+      PORT: "1337"
+      APP_KEYS: "toBeModified1,toBeModified2"
+      API_TOKEN_SALT: tobemodified
+      ADMIN_JWT_SECRET: tobemodified
+      TRANSFER_TOKEN_SALT: tobemodified
+      JWT_SECRET: tobemodified
+      ENCRYPTION_KEY: tobemodified
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1337/admin"]
+      interval: 5s
+      timeout: 5s
+      retries: 2
+      start_period: 60s
+  register_automation: 
+    container_name: automation_register_products
+    depends_on:
+      cms:
+        condition: service_healthy
+    build: .
+    environment:
+    ## those are sample values that in production wouldn't be available this way
+      PRODUCT_LIST_INPUT_FILE: "assets/products.csv"
+      STRAPI_CREDENTIALS: '{"email":"admin@gmail.com","password":"@Admin123"}'
+      CMS_CREDENTIALS_SECRET_NAME: "STRAPI_CREDENTIALS"
+      PLAYWRIGHT_HEADLESS: "true"
+      LOGIN_RATE_LIMIT_DELAY_MS: "60000"
+      LOG_LEVEL: "info"
+      REGISTER_PRODUCT_PAGE_URL: http://cms:1337/admin/content-manager/collection-types/api::product.product
+
+

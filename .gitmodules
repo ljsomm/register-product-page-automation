@@ -1,0 +1,3 @@
+[submodule "sample-product-register-cms"]
+	path = sample-product-register-cms
+	url = https://github.com/ljsomm/sample-product-register-cms
