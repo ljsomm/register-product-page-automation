@@ -1,4 +1,4 @@
-import { chromium, Page } from "@playwright/test";
+import { chromium, Page } from "playwright";
 import { logger } from "../../utils/logger";
 
 export class PlaywrightBaseProductAdapter {

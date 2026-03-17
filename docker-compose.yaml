@@ -1,7 +1,7 @@
 services:
   cms:
     container_name: cms_app
-    build: ./sample-product-register-cms
+    build: https://github.com/ljsomm/sample-product-register-cms.git
     ports:
       - 1337:1337
     environment:

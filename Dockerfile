@@ -6,6 +6,10 @@ COPY . .
 
 RUN npm install
 
+RUN npx playwright install
+
+RUN npx playwright install-deps
+
 RUN npm run build
 
 CMD ["npm", "run", "start"]

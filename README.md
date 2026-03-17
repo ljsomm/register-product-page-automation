@@ -8,7 +8,7 @@ This repository contains a base automation that reads products from a CSV file a
 
 - **TypeScript**: main language, compiled with `Webpack`
 - **Playwright**: browser automation for interacting with the Strapi admin UI
-- **Strapi 5**: headless CMS used as the product registraton backend (`sample-product-register-cms/`)
+- **Strapi 5**: headless CMS used as the product registraton backend (see [sample-product-register-cms](https://github.com/ljsomm/sample-product-register-cms))
 - **Zod**: runtime schema validation for product data
 - **Pino**: structured logging with configurable log levels via `LOG_LEVEL` environment variable
 - **dotenv**: environment variable management
@@ -33,6 +33,8 @@ Once it finishes, you can verify the products were created by opening [http://lo
 ```bash
 cd sample-product-register-cms && npm run develop
 ```
+
+> The CMS lives in a [separate repository](https://github.com/ljsomm/sample-product-register-cms). Clone it alongside this project if you want to run locally.
 
 2. Copy `.env.example` to `.env` and fill in your credentials and CSV path.
 
@@ -81,3 +83,7 @@ The Playwright adapters follow an approach similar to the [Page Object pattern](
 #### Structured logging
 
 Logging is handled by Pino ([`src/utils/logger.ts`](src/utils/logger.ts)) with pino-pretty for human-readable output. The log level is controlled via the `LOG_LEVEL` env var and defaults to `info`.
+
+#### CMS as a remote Git build
+
+Instead of embedding the Strapi CMS as a git submodule or publishing a Docker image, the `docker-compose.yaml` builds the CMS directly from its [remote repository](https://github.com/ljsomm/sample-product-register-cms) using Docker Compose's [git repository build context](https://docs.docker.com/compose/how-tos/build-with-bake/#remote-context). This keeps the automation repo lightweight, avoids submodule complexity, and always builds from the latest CMS source when running `docker-compose up --build`.
