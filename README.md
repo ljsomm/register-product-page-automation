@@ -55,7 +55,7 @@ npm run build && npm start
 
 #### Hexagonal Architecture
 
-The project follows hexagonal architecture (aka ports and adapters) to keep the domain logic completely decoupled from external systems. This means swapping the CSV source for an API or replacing Playwright with direct Strapi API calls requires zero changes to the core business logic.
+The project follows hexagonal architecture (aka ports and adapters) to keep the domain logic completely decoupled from external systems. This means swapping the CSV source for an API or replacing Playwright with direct Strapi API calls or even read from a database such as DynamoDB instead of CSV requires zero changes to the core business logic.
 
 <img width="801" height="401" alt="image" src="https://github.com/user-attachments/assets/5df64b8f-e30d-4650-a27a-9e8a6153641c" />
 
