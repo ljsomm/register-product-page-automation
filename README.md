@@ -7,7 +7,7 @@ This repository contains a base automation that reads products from a CSV file a
 The idea of this sample project is to speed up the proccess of registering projects in a CMS and/or E-commerce plataform.
 Although everything was built using docker and in a local approach, we can think about a given design in a real-world scenario that'd be equivalent to:
 
-<img width="912" height="441" alt="image" src="https://github.com/user-attachments/assets/ab195e2e-50f7-45e0-825f-04609a7ac76a" />
+<img width="1241" height="442" alt="image" src="https://github.com/user-attachments/assets/82f64ddb-414c-4752-b225-4db29983ead3" />
 
 
 **Note:** It's known that the Strapi API is ideally to be used, but in this case was mostly to showcase the capabilities of PlayWright in certain automations.
